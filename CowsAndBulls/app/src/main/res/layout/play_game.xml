@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/input_1"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/input_2"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" />
+
+        <EditText
+            android:id="@+id/input_3"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" />
+
+        <EditText
+            android:id="@+id/input_4"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/enter_button_label" />
+
+    </LinearLayout>
+    
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </ListView>
+
+</LinearLayout>

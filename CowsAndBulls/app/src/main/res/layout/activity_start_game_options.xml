@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.27"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="@string/text_game_option_chances" />
+
+    <SeekBar
+        android:id="@+id/seekbar_max_attempts"
+        android:layout_width="252dp"
+        android:layout_height="wrap_content"
+        android:max="7" />
+
+    <TextView
+        android:id="@+id/text_max_attempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="@string/text_game_option_word" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/input_1"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/input_2"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" />
+
+        <EditText
+            android:id="@+id/input_3"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" />
+
+        <EditText
+            android:id="@+id/input_4"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLength="1"
+            android:textSize="50dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/enter_button_label" />
+    </LinearLayout>
+
+</LinearLayout>

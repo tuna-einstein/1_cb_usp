@@ -1,30 +1,25 @@
 package com.winfiny.cb;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import com.parse.ParseUser;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ParseUser user = ParseUser.getCurrentUser();
-        if (user != null) {
-            ParseUser.getCurrentUser().saveInBackground();
-            TextView welcome = (TextView) findViewById(R.id.txt_welcome_msg);
-            welcome.setText("Hello " + user.getUsername());
+        FragmentManager fm = getFragmentManager();
+        if (fm.findFragmentById(R.id.list_fragment) == null) {
+            GamesListFragment list = new GamesListFragment();
+            fm.beginTransaction().add(R.id.list_fragment, list).commit();
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -39,17 +34,13 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        if (id == R.id.action_logout) {
-            ParseUser.logOut();
-            startActivity(new Intent(this, LoginDispatchActivity.class));
-            finish();
-            return true;
-        }
+//        if (id == R.id.action_logout) {
+//            ParseUser.logOut();
+//            startActivity(new Intent(this, LoginDispatchActivity.class));
+//            finish();
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 }

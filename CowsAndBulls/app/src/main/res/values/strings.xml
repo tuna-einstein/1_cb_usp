@@ -7,11 +7,39 @@
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
 
-    <string name="parse_app_id">4DCDS2Rb4Sr9YBhHGX8IsAGNNhGCIydvwIh0Ey1G1</string>
+    <string name="parse_app_id">4DCDS2Rb4Sr9YBhHGX8IsAGNNhGCIydvwIh0Ey1G</string>
     <string name="parse_client_key">0eYMuL3ulrEurr7HS0Qib9yvLm9wWKecXmHAm649</string>
 
-    <string name="facebook_app_id">10928385974090761</string>
+    <string name="facebook_app_id">1092838597409076</string>
     <string name="twitter_consumer_key">YOUR_TWITTER_CONSUMER_KEY</string>
     <string name="twitter_consumer_secret">YOUR_TWITTER_CONSUMER_SECRET</string>
+
+    <string name="refresh">Refresh</string>
+    <string name="create_game">Create Game</string>
+    <string name="empty">No Games Found</string>
+    <string name="logout">Logout</string>
+
+    <string name="welcome_message">Hello %s! \nWelcome to bulls and cows!\nOutsmart your opponent with your code breaking skills!\nNOTE: This is a wifi only game.  </string>
+    <string name="title_activity_main">MainApp</string>
+    <string name="enter_button_label">Enter</string>
+    <string name="text_games_list">Select a game to start playing!\nTotal open games = %d</string>
+    <string name="title_activity_display_input">DisplayInput</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="button_create_game">New Game</string>
+    <string name="button_join_game">Join Game</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="text_game_option_chances">Select maximum allowed attempts</string>
+    <string name="text_game_option_word">Enter a four letter word below</string>
+    <string name="title_activity_display_game">DisplayGameActivity</string>
+    <string name="text_game_activity_label">Game Activity</string>
+    <string name="title_activity_join_game">JoinGameActivity</string>
+    <string name="game_over_attempts">Sorry! The word is %s</string>
+    <string name="game_over_won">You won the game in %s attempts</string>
+    <string name="game_over">Game Over</string>
+    <string name="login">Login</string>
+    <string name="login_anonymous">Let me in...</string>
+    <string name="cannot_create_game">(Cannot create games with this option)</string>
+    <string name="congrats">Congratulations</string>
+    <string name="psychic">Wow! Do you read minds? Because, you guessed the word in just 1 attempt.</string>
 
 </resources>

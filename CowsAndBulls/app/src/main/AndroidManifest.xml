@@ -23,7 +23,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.winfiny.cb.MainActivity"/>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".CreateGameActivity"
+            android:configChanges="orientation" >
+        </activity>
+        <activity
+            android:name=".PlayGameActivity"
+            android:configChanges="orientation" >
+        </activity>
 
         <activity
             android:name="com.parse.ui.ParseLoginActivity"

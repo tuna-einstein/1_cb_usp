@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "cb.winfiny.com.cowsandbulls"
-        minSdkVersion 15
+        minSdkVersion 13
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -25,4 +25,6 @@ dependencies {
 
     compile project(':ParseLoginUI')
     compile 'com.facebook.android:facebook-android-sdk:3.21.1'
+
+    compile 'net.jeremybrooks:knicker:2.4.1'
 }

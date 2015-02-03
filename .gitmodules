@@ -1,0 +1,3 @@
+[submodule "ParseUI-Android"]
+	path = ParseUI-Android
+	url = git://github.com/ParsePlatform/ParseUI-Android.git

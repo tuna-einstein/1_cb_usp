@@ -1,7 +1,7 @@
 package com.winfiny.cb;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -21,7 +21,7 @@ import net.jeremybrooks.knicker.dto.Definition;
 
 import java.util.List;
 
-public class CreateGameActivity extends ActionBarActivity implements
+public class CreateGameActivity extends Activity implements
 		OnSeekBarChangeListener {
 	private EditText text1;
 	private EditText text3;

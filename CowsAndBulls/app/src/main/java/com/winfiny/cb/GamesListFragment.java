@@ -197,7 +197,7 @@ public class GamesListFragment extends Fragment {
             holder.name.setSingleLine(true);
 
             holder.name.setText(object.get(Game.OWNER_USERNAME).toString());
-            holder.desc.setText(object.get(Game.WORD).toString());
+//            holder.desc.setText(object.get(Game.WORD).toString());
             holder.price.setText(object.get(Game.CHANCES).toString());
 
             return convertView;

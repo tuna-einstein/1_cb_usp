@@ -36,7 +36,7 @@ public class GamesListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.games_list, container);
+        View v = inflater.inflate(R.layout.games_list, null);
         mListView = (ListView) v.findViewById(android.R.id.list);
 
         mList = new ArrayList<ParseObject>();
@@ -57,7 +57,7 @@ public class GamesListFragment extends Fragment {
         });
         setHasOptionsMenu(true);
         refreshList();
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return v;
     }
 
     public void refreshList(){
@@ -144,14 +144,6 @@ public class GamesListFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // TODO Auto-generated method stub
-        inflater.inflate(R.menu.menu_main, menu);
-        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private class ItemsListAdapter extends ArrayAdapter<ParseObject> {

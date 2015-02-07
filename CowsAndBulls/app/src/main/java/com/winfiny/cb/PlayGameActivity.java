@@ -13,16 +13,16 @@ public class PlayGameActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_play_game);
 		FragmentManager fm = getFragmentManager();
-		if (fm.findFragmentById(R.id.list_fragment) == null) {
+		if (fm.findFragmentById(R.id.games_container) == null) {
 			PlayGameFragment game = new PlayGameFragment();
 			Intent intent = getIntent();
 			String word = intent.getStringExtra(Game.WORD);
 			game.setWord(word);
 			int chances = intent.getIntExtra(Game.CHANCES, 5);
 			game.setChances(chances);
-			fm.beginTransaction().add(R.id.list_fragment, game).commit();
+			fm.beginTransaction().add(R.id.games_container, game).commit();
 		}
 	}
 }

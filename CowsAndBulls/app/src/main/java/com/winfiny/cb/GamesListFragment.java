@@ -135,7 +135,7 @@ public class GamesListFragment extends Fragment {
                 refreshList();
                 return true;
             case R.id.create_game:
-                Intent i = new Intent(getActivity(), CreateGameActivity.class);
+                Intent i = new Intent(getActivity(), NewGameActivity.class);
                 getActivity().startActivity(i);
                 return true;
             case R.id.logout:

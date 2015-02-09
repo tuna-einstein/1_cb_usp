@@ -25,4 +25,6 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:3.21.1'
     compile 'net.jeremybrooks:knicker:2.4.1'
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.getbase:floatingactionbutton:1.7.0'
+    compile 'com.nineoldandroids:library:2.4.0'
 }

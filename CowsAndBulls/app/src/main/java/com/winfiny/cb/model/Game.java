@@ -10,11 +10,13 @@ public class Game {
 
     String word;
     int chances;
+    boolean timed;
     String ownerId;
     String ownerUsername;
 
     public static final String OWNER_USERNAME = "OwnerUsername";
     public static final String WORD = "word";
+    public static final String TIMED = "Timed";
     public static final String OWNER_ID = "OwnerId";
     public static final String CHANCES = "Chances";
 
@@ -30,6 +32,15 @@ public class Game {
     public void setChances(int chances) {
         this.chances = chances;
     }
+
+    public boolean isTimed() {
+        return timed;
+    }
+
+    public void setTimed(boolean timed) {
+        this.timed = timed;
+    }
+
     public String getOwnerId() {
         return ParseUser.getCurrentUser().getObjectId();
     }
@@ -43,10 +54,18 @@ public class Game {
         this.ownerUsername = ownerUsername;
     }
 
+    public Game(String word, int chances, boolean timed) {
+        super();
+        this.word = word;
+        this.chances = chances;
+        this.timed = timed;
+    }
+
     public Game(String word, int chances) {
         super();
         this.word = word;
         this.chances = chances;
+        this.timed = false;
     }
 
     public Game() {
@@ -59,6 +78,7 @@ public class Game {
     public static Game fromParseObject(ParseObject p){
         Game g = new Game();
         g.setChances(p.getInt(CHANCES));
+        g.setTimed(p.getBoolean(TIMED));
         g.setWord(p.get(WORD).toString());
         g.setOwnerId(p.get(OWNER_ID).toString());
         g.setOwnerUsername(p.get(OWNER_USERNAME).toString());
@@ -72,6 +92,7 @@ public class Game {
             game.put(CHANCES, getChances());
             game.put(OWNER_ID, getOwnerId());
             game.put(WORD, getWord());
+            game.put(TIMED, isTimed());
             game.put(OWNER_USERNAME, getOwnerUsername());
             try {
                 game.save();

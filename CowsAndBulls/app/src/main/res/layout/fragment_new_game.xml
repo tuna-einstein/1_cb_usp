@@ -9,18 +9,87 @@
                 tools:context="com.winfiny.cb.NewGameActivity$PlaceholderFragment">
 
     <LinearLayout
+        android:id="@+id/lyListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <it.sephiroth.android.library.widget.HListView
-            android:id="@+id/hListView1"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:background="#11000000" />
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/tvLetter1"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/box_selector"
+            android:focusableInTouchMode="true"
+            android:layout_height="100dp"/>
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/tvLetter2"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/box_selector"
+            android:layout_height="100dp"/>
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/tvLetter3"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/box_selector"
+            android:layout_height="100dp"/>
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/tvLetter4"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/box_selector"
+            android:layout_height="100dp"/>
+
+        <!--<it.sephiroth.android.library.widget.HListView-->
+            <!--android:id="@+id/hListView1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="#11000000"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:paddingTop="10dp"/>-->
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAttemptsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lyListView"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:text="Attempts Allowed:"/>
+
+    <TextView
+        android:id="@+id/tvAttempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lyListView"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@id/tvAttemptsLabel"
+        android:text="@string/label_attempts_unlimited"/>
+
+    <SeekBar
+        android:id="@+id/sbAttempts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAttemptsLabel"
+        android:layout_marginBottom="5dp"
+        android:max="10"/>
+
+    <Switch
+        android:id="@+id/swTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sbAttempts"
+        android:layout_marginBottom="5dp"
+        android:text="Timer"/>
 </RelativeLayout>

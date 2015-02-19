@@ -10,9 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.winfiny.cb.model.Game;
 import com.winfiny.cb.model.Prediction;
+
+import net.jeremybrooks.knicker.dto.Definition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +36,7 @@ import it.sephiroth.android.library.widget.HListView;
  * Use the {@link NewGameFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewGameFragment extends Fragment {
+public class NewGameFragment extends Fragment implements View.OnFocusChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //    private static final String ARG_PARAM1 = "param1";
@@ -39,11 +46,25 @@ public class NewGameFragment extends Fragment {
 //    private String mParam1;
 //    private String mParam2;
 
-    @InjectView(R.id.hListView1) HListView mListView;
+    //    @InjectView(R.id.hListView1) HListView mListView;
+    @InjectView(R.id.sbAttempts)
+    SeekBar mSeekBar;
+    @InjectView(R.id.tvAttempts)
+    TextView mTvAttempts;
+    @InjectView(R.id.swTimer)
+    Switch mSwTimer;
+    @InjectView(R.id.tvLetter1)
+    Button tvLetter1;
+    @InjectView(R.id.tvLetter2)
+    Button tvLetter2;
+    @InjectView(R.id.tvLetter3)
+    Button tvLetter3;
+    @InjectView(R.id.tvLetter4)
+    Button tvLetter4;
 
     private OnNewGameFragmentInteractionListener mListener;
-    private ArrayList<String> mList;
-    private LetterAdapter mLetterAdapter;
+//    private ArrayList<String> mList;
+//    private LetterAdapter mLetterAdapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -82,33 +103,159 @@ public class NewGameFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_new_game, container, false);
         ButterKnife.inject(this, v);
 
-        mList = new ArrayList<String>();
-        mList.add("W");
-        mList.add("O");
-        mList.add("R");
-        mList.add("D");
-        mLetterAdapter = new LetterAdapter(getActivity(), R.layout.item_char_list, mList);
-        mListView.setAdapter(mLetterAdapter);
+//        mList = new ArrayList<String>();
+//        mList.add("W");
+//        mList.add("O");
+//        mList.add("R");
+//        mList.add("D");
+//        mLetterAdapter = new LetterAdapter(getActivity(), R.layout.item_char_list, mList);
+//        mListView.setAdapter(mLetterAdapter);
+
+        tvLetter1.setOnFocusChangeListener(this);
+        tvLetter2.setOnFocusChangeListener(this);
+        tvLetter3.setOnFocusChangeListener(this);
+        tvLetter4.setOnFocusChangeListener(this);
+
+        tvLetter1.requestFocus();
+        mSeekBar.setProgress(0);
+        mCurrentLetter = 0;
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress > 0) {
+                    mTvAttempts.setText(String.valueOf(progress));
+                } else {
+                    mTvAttempts.setText(getString(R.string.label_attempts_unlimited));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         return v;
     }
 
+    int mCurrentLetter;
+
+    public void setLetterText(String letter) {
+//        if(tvLetter1.isFocused()){
+//            tvLetter2.requestFocus();
+//        }else if(tvLetter2.isFocused()){
+//            tvLetter3.requestFocus();
+//        }else if(tvLetter3.isFocused()){
+//            tvLetter4.requestFocus();
+//        }
+        switch (mCurrentLetter) {
+            case 0:
+                tvLetter1.setText(letter);
+                break;
+            case 1:
+                tvLetter2.setText(letter);
+                break;
+            case 2:
+                tvLetter3.setText(letter);
+                break;
+            case 3:
+                tvLetter4.setText(letter);
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    public void createNewGame() {
+        String input = tvLetter1.getText().toString() + tvLetter2.getText().toString()
+                + tvLetter3.getText().toString() + tvLetter4.getText().toString();
+
+        int maxAttempts = mSeekBar.getProgress();
+        boolean timedGame = mSwTimer.isChecked();
+        List<Definition> result;
+        try {
+            result = new WordValidationTask().execute(input).get();
+            if (result != null && result.size() > 0) {
+                new Game(input, maxAttempts, timedGame).persistGame();
+                getActivity().finish();
+            } else {
+                tvLetter1.setError(input + " is not a valid word!");
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            tvLetter1.setError(input + " - Word couldn't be verified. Try again later!");
+        }
+
+    }
+
+    public void setFocus() {
+//        if(tvLetter1.isFocused()){
+//            tvLetter2.requestFocus();
+//        }else if(tvLetter2.isFocused()){
+//            tvLetter3.requestFocus();
+//        }else if(tvLetter3.isFocused()){
+//            tvLetter4.requestFocus();
+//        }
+        switch (mCurrentLetter) {
+            case 0:
+                tvLetter1.requestFocus();
+                break;
+            case 1:
+                tvLetter2.requestFocus();
+                break;
+            case 2:
+                tvLetter3.requestFocus();
+                break;
+            case 3:
+                tvLetter4.requestFocus();
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    public void decrementCurrentLetter() {
+        if (mCurrentLetter > 0)
+            mCurrentLetter--;
+        setFocus();
+    }
+
+    public void incrementCurrentLetter() {
+        if (mCurrentLetter < 3)
+            mCurrentLetter++;
+        setFocus();
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(int primaryCode) {
-        switch(primaryCode){
-            case Keyboard.KEYCODE_DELETE :
+        tvLetter1.setError(null);
+        switch (primaryCode) {
+            case Keyboard.KEYCODE_DELETE:
 //                deleteSurroundingText(1, 0);
-                mLetterAdapter.remove(mList.get(mList.size()-1));
+                setLetterText("");
+                decrementCurrentLetter();
+//                mLetterAdapter.remove(mList.get(mList.size()-1));
                 break;
             case Keyboard.KEYCODE_DONE:
+                createNewGame();
 //                sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
             default:
-                char code = (char)primaryCode;
-                if(Character.isLetter(code)){
+                char code = (char) primaryCode;
+                if (Character.isLetter(code)) {
                     code = Character.toUpperCase(code);
                 }
-                mLetterAdapter.add(String.valueOf(code));
+                setLetterText(String.valueOf(code));
+                incrementCurrentLetter();
+//                mLetterAdapter.add(String.valueOf(code));
 //                commitText(String.valueOf(code),1);
         }
     }
@@ -128,6 +275,21 @@ public class NewGameFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if(!hasFocus) return;
+
+        if (v.getId() == R.id.tvLetter1) {
+            mCurrentLetter = 0;
+        } else if (v.getId() == R.id.tvLetter2) {
+            mCurrentLetter = 1;
+        } else if (v.getId() == R.id.tvLetter3) {
+            mCurrentLetter = 2;
+        } else if (v.getId() == R.id.tvLetter4) {
+            mCurrentLetter = 3;
+        }
     }
 
     /**
@@ -186,6 +348,7 @@ public class NewGameFragment extends Fragment {
         }
 
     }
+
     static class ViewHolder {
         TextView letter;
     }
